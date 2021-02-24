@@ -111,13 +111,12 @@ function createRatingStars(element){
 
     //
     if(element.classList.contains('user-rating')){
-        const element_hidden_input = document.createElement('input');
-        element_hidden_input.setAttribute('type','text');
-        element_hidden_input.classList.add('hidden');
-        element_hidden_input.setAttribute('name','rating');
-        element_hidden_input.setAttribute('required','true');
-        element_hidden_input.value = rating_count==0?"":rating_count;
-        element.appendChild(element_hidden_input);
+        const input = document.createElement('input');
+        input.setAttribute('type','text');
+        input.setAttribute('name','rating');
+        input.setAttribute('required','true');
+        input.value = rating_count==0?"":rating_count;
+        element.appendChild(input);
         const element_star = element.querySelectorAll('.star');
         for(let j = 0; j < element_star.length;j++){
             console.log(element_star[j]);
@@ -128,9 +127,9 @@ function createRatingStars(element){
         }
     }
   }
-  const ratings_containers = document.querySelectorAll('.rating');
-  for (let i = 0; i < ratings_containers.length; i++) {
-    const element = ratings_containers[i];
+  const ratings = document.querySelectorAll('.rating');
+  for (let i = 0; i < ratings.length; i++) {
+    const element = ratings[i];
     createRatingStars(element);
   }
 

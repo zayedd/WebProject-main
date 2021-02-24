@@ -65,59 +65,58 @@ while($row = mysqli_fetch_array($result)) {
 }
 ?>
 <script>
+
 function createRatingStars(element){
 
-    element.innerHTML = "";
-    var rating_count = element.getAttribute('data-rating');
-    // * check if the .rating element has a 'data-rating' attribute or no
-    // * if yes, get the value of it, else then = 5
-    rating_count = rating_count?rating_count:0;
-    rating_count = parseInt(rating_count);
-    var stars = new Array(5);
-    // *for the data-rating's count create full stars
-    for (let j = 0; j < rating_count; j++) {
-        var star = document.createElement('div');
-        star.classList.add('star');
-        stars[j] = star;
-        
-    }
-    // *for the rest of 5 stars (which is { 5 - rating_count } ) create an empty star
-    for (let j = rating_count; j < 5; j++ ){
-        var star = document.createElement('div');
-        star.classList.add('star');
-        star.classList.add('nostar');
-        stars[j] = star;
-    }
-    // TODO: If the rating is a fraction, draw half star
-    for (let j = 0; j < 5; j++) {
-        element.appendChild(stars[j]);
-    }
+element.innerHTML = "";
+var rating_count = element.getAttribute('data-rating');
+// * check if the .rating element has a 'data-rating' attribute or no
+// * if yes, get the value of it, else then = 5
+rating_count = rating_count?rating_count:0;
+rating_count = parseInt(rating_count);
+var stars = new Array(5);
+// *for the data-rating's count create full stars
+for (let j = 0; j < rating_count; j++) {
+    var star = document.createElement('div');
+    star.classList.add('star');
+    stars[j] = star;
+    
+}
+// *for the rest of 5 stars (which is { 5 - rating_count } ) create an empty star
+for (let j = rating_count; j < 5; j++ ){
+    var star = document.createElement('div');
+    star.classList.add('star');
+    star.classList.add('nostar');
+    stars[j] = star;
+}
+// TODO: If the rating is a fraction, draw half star
+for (let j = 0; j < 5; j++) {
+    element.appendChild(stars[j]);
+}
 
-    //
-    if(element.classList.contains('user-rating')){
-        const element_hidden_input = document.createElement('input');
-        element_hidden_input.setAttribute('type','text');
-        element_hidden_input.classList.add('hidden');
-        element_hidden_input.setAttribute('name','rating[]');
-        element_hidden_input.setAttribute('required','true');
-        element_hidden_input.value = rating_count==0?"":rating_count;
-        element.appendChild(element_hidden_input);
-        const element_star = element.querySelectorAll('.star');
-        for(let j = 0; j < element_star.length;j++){
-            console.log(element_star[j]);
-            element_star[j].addEventListener('click',function(){
-                this.parentNode.setAttribute('data-rating',j+1);
-                createRatingStars(this.parentNode);
-            });
-        }
+//
+if(element.classList.contains('user-rating')){
+    const input = document.createElement('input');
+    input.setAttribute('type','text');
+    input.setAttribute('name','rating');
+    input.setAttribute('required','true');
+    input.value = rating_count==0?"":rating_count;
+    element.appendChild(input);
+    const element_star = element.querySelectorAll('.star');
+    for(let j = 0; j < element_star.length;j++){
+        console.log(element_star[j]);
+        element_star[j].addEventListener('click',function(){
+            this.parentNode.setAttribute('data-rating',j+1);
+            createRatingStars(this.parentNode);
+        });
     }
-  }
-  const ratings_containers = document.querySelectorAll('.rating');
-  for (let i = 0; i < ratings_containers.length; i++) {
-    const element = ratings_containers[i];
-    createRatingStars(element);
-  }
-
+}
+}
+const ratings = document.querySelectorAll('.rating');
+for (let i = 0; i < ratings.length; i++) {
+const element = ratings[i];
+createRatingStars(element);
+}
 </script>
 </body>
 </html>
