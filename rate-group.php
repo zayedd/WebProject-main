@@ -58,7 +58,6 @@ if(mysqli_num_rows($result)>0)
 while($row = mysqli_fetch_array($result)) {
   
    echo" <div class='card' style='width: 18rem;'>";
-   echo $row['id'];
     echo " <img class='card-img-top' src='".$row['photo']."' alt='Card image cap'>";
   echo"<div class='card-body'>";
     echo"<h5 class='card-title'>{$row['place']}</h5>";

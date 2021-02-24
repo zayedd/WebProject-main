@@ -46,13 +46,13 @@ if(mysqli_num_rows($result)>0)
 while($row = mysqli_fetch_array($result)) {
   
    echo" <div class='card' style='width: 18rem;'>";
-   echo $row['id'];
     echo " <img class='card-img-top' src='".$row['photo']."' alt='Card image cap'>";
   echo"<div class='card-body'>";
     echo"<h5 class='card-title'>{$row['place']}</h5>";
     echo"<h6 class='card-text'>{$row['country']}</h6>";
     echo "<div class='rating' data-rating='".$row["stars"]."'></div>";
     echo "<a href='http://localhost/WebProject-main/grp.php?id={$row['id']}' class='btn btn-primary'>Group Details</a>";
+    echo "<a href='./rate-group.php?id={$row['id']}' class='btn btn-primary'>Rate Group</a>";
    if($t=="admin")
    {
     echo "<a href='http://localhost/WebProject-main/editgroups.php?id={$row['id']}' class='btn btn-secondary'>Edit</a>";
