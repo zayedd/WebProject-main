@@ -1,6 +1,15 @@
 <?php
+include("connectionproject.php");
 session_start();
 require_once("navbar.php");
+if(!isset($_GET['id'])){
+    die('Not Found');
+}
+if(isset($_POST['rating'])){
+    $rating = $_POST['rating'];
+    $rate_query = "INSERT INTO rating VALUES('','{$rating}','{$_SESSION['id']}','{$_GET['id']}')";
+    mysqli_query($conn,$rate_query);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,16 +37,19 @@ require_once("navbar.php");
       .rating .star.nostar{
         background-image:url('layout/svg/nostar.svg');
       }
+      .rating.user-rating input{
+          width:0;
+          opacity:0;
+      }
     </style>
   </head>
 <body>
 <?php
-include("connectionproject.php");
 $t=$_SESSION['t'];
 echo $t;
 
 
-$sql = "SELECT g.*,AVG(r.stars) as stars FROM groups g LEFT JOIN rating r on g.id=r.group_id GROUP BY g.id";
+$sql = "SELECT g.*,AVG(r.stars) as stars FROM groups g LEFT JOIN rating r on g.id=r.group_id WHERE g.id='{$_GET['id']}' GROUP BY g.id";
 $result = mysqli_query($conn,$sql);
 
 
@@ -64,6 +76,11 @@ while($row = mysqli_fetch_array($result)) {
 }
 }
 ?>
+<p>How do you rate this group?</p>
+<form method="POST">
+<div class="rating user-rating"></div>
+<button class="btn-primary">Submit</button>
+</form>
 <script>
 function createRatingStars(element){
 
@@ -98,7 +115,7 @@ function createRatingStars(element){
         const element_hidden_input = document.createElement('input');
         element_hidden_input.setAttribute('type','text');
         element_hidden_input.classList.add('hidden');
-        element_hidden_input.setAttribute('name','rating[]');
+        element_hidden_input.setAttribute('name','rating');
         element_hidden_input.setAttribute('required','true');
         element_hidden_input.value = rating_count==0?"":rating_count;
         element.appendChild(element_hidden_input);
