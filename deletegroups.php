@@ -1,104 +1,136 @@
-  <?php
-  include"adminnav.php";
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "webproject";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// Check connection
-
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-
-if(isset($_GET['del']))
-{
-  foreach($_GET['delete'] as $d)
-  {
+<?php
+    session_start();
     
-    $queryChild = "DELETE FROM data WHERE GroupID=$d";
-    if ($conn->query($queryChild) === TRUE) 
-    {
-      $query = "DELETE FROM groups WHERE GroupID=$d";  
-      if($conn->query($query)=== True)
-      {
-        echo "Record/s deleted successfully";
-      }
-      else{
-        echo "parent not deleted";
-      }
-      
-    } 
-    else 
-    {
-      echo "Error: " . $query . "<br>" . $conn->error;
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "webproject (2)";
+    
+    // Create connection
+    
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    
+    
+    // Check connection
+    //$dg=$_POST['dg'];
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
     }
-  }
-}
-$query = "SELECT * FROM groups ";
-$result = mysqli_query($conn,$query);
+    
+    
+    
+  
+      if(isset($_GET['del']))
+      {
+      foreach($_GET['delete'] as $d)
+      {
+       
+          $sql = "DELETE FROM groups WHERE id=$d";
+          if ($conn->query($sql) === TRUE) 
+          {
+            
+            
+            
+            
+          echo "<h4>"."Record/s deleted successfully.". "</h4>";
+          } 
+          else 
+          {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+          }
+      }
+      }
+    
+    $sql="SELECT * FROM groups";
+    $result=mysqli_query($conn,$sql);
+
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-		<style type="text/css">
-		table, td,th{
-		border: 1px solid #ddd;
-  		padding: 8px;
-  		border:double;
-      border-color: blue;		
-		}
-
-		table{
-			border-collapse:collapse;
-			width :60%;
-
-		}
-    th,td{
-      color: red;
-    }
-
-    h1{
-      color: blue;
-    }
-	</style>
-</head>
-<body>
-    <form >
-      <h1>Delete Groups</h1>
-  <table>
-  <tr>
-    <th>Id</th>
-    <th>place</th>
-    <th>Date/time</th>
-    <th>country</th>
-    <th>Delete</th>
-  </tr>
-<?php
-while($row = $result -> fetch_array(MYSQLI_ASSOC)) {             
-        $id = $row['GroupID'];
-        $place = $row['place'];
-        $dtgroup = $row['datetime'];
-        $country = $row['country']; 
-        ?>
-  <tr>
-    <td><?php echo $id; ?></td>
-    <td><?php echo $place; ?></td>
-    <td><?php echo $dtgroup; ?></td>
-    <td><?php echo $country; ?></td>
-    <td><input type="checkbox" name="delete[]" value="<?php echo $row['GroupID']; ?>"></td>
-  </tr>
-     <?php
-    }   
+  <?php
+    include"adminnav.php";
   ?>
-</table>  
-<br>
-<button type="submit" name="del">DELETE</button> 
-</form>
-</body>
+  <head>
+      <style>
+        h1{
+          color: purple;
+          font-weight: bold;
+          font-style: italic;
+        }
+        h4{
+          color: red;
+          font-weight: bold;
+          font-style: italic;
+        }
+        table, th, td {
+             border: 1px solid white;
+        }
+        th{
+          color:blue;
+          font-weight: bold;
+        }
+        td{
+          color:black;
+          font-style:italic;
+          font-weight: bold;
+        }
 
+        table{
+          width: 100%;
+          border-collapse: collapse;
+        }
+        body{
+          background-image: url('wadi.jpg');
+          background-size: cover;
+          height: 100%;
+        }
+      </style>
+      <link rel="stylesheet" href="project.css">
+  </head>
+ 
+    <body>
+
+    <form action="deletegroups.php">
+      <h1>Delete Groups</h1>
+            <table class="table table-dark table-sm">
+        <tr>
+          <th>Id</th>
+          <th>Place</th>
+          <th>Date/Time</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>Price</th>
+          <th>Delete</th>
+        </tr>
+
+
+          <?php
+          while($row = $result -> fetch_array(MYSQLI_ASSOC)) {             
+                  $id=$row['id'];
+                  $place=$row['place'];
+                  $datetime=$row['datetime'];
+                  $country=$row['country'];
+                  $city=$row['city'];
+                  $price=$row['price'];
+                  ?>
+            <tr>
+              <td><?php echo $id; ?></td>
+              <td><?php echo $place; ?></td>
+              <td><?php echo $datetime; ?></td>
+              <td><?php echo $country; ?></td>
+              <td><?php echo $city; ?></td>
+              <td><?php echo $price; ?></td>
+              <td><input type="checkbox" name="delete[]" value="<?php echo $row['id']; ?>"></td>
+            </tr>
+               <?php
+              }   
+            ?>
+          </table>  
+          <br>
+          <button type="submit" name="del">DELETE</button>
+
+      
+    </form>
+
+    </body> 
 </html>
