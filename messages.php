@@ -25,7 +25,7 @@ if($type=="user")
     if(mysqli_num_rows($result)>0)
 {
 while($row = mysqli_fetch_array($result)) {
-    echo "<a href='http://localhost/WebProject-main/chat1.php?idd={$row['id']}' class='btn btn-primary'>{$row['First_Name']}</a>";
+    echo "<a href='chat1.php?idd={$row['id']}' class='btn btn-primary'>{$row['First_Name']}</a>";
    echo" <br>";
 }
 }
@@ -67,7 +67,7 @@ while($row = mysqli_fetch_array($result)) {
       while($row1 = mysqli_fetch_array($result1)){
       if($usids[$x]!=$_SESSION['id'])
       {
-         echo "<a href='http://localhost/WebProject-main/chat1.php?idd={$usids[$x]}' class='btn btn-primary'>{$row1['First_Name']}</a>";
+         echo "<a href='chat1.php?idd={$usids[$x]}' class='btn btn-primary'>{$row1['First_Name']}</a>";
 
       }
 

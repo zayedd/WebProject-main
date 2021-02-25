@@ -74,7 +74,7 @@ while($row = mysqli_fetch_array($result2))
         <td><?php echo $data[$i]["datetime"];?></td>
         <td><?php echo $data[$i]["price"];?></td>
         <?php
-        echo " <th> <a href='http://localhost/WebProject-main/deletecrt.php?id={$data2[$i]['crt_id']}' class='btn btn-danger btn-sm'>Delete<th> </a> ";
+        echo " <th> <a href='deletecrt.php?id={$data2[$i]['crt_id']}' class='btn btn-danger btn-sm'>Delete<th> </a> ";
        ?>
 
     </tr>
