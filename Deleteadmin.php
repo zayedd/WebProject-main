@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include"adminnav.php";
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -11,19 +12,20 @@
     
     
     // Check connection
-    $ad=$_POST['ad'];
+    //$ad=$_POST['ad'];
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
     
     
-    $sql="SELECT * FROM data WHERE (First_Name LIKE '%". $ad . "%' or Last_Name LIKE '%". $ad . "%' or  Email LIKE '%". $ad . "%' or Gender LIKE '%". $ad . "%' or  id LIKE '%". $ad . "%') AND type='admin'  ";
+
+    
   
       if(isset($_GET['del']))
       {
       foreach($_GET['delete'] as $d)
       {
-        include"adminnav.php";
+ 
           $sql = "DELETE FROM data WHERE id=$d";
           if ($conn->query($sql) === TRUE) 
           {
@@ -40,7 +42,7 @@
       }
       }
     
-   
+    $sql="SELECT * FROM data WHERE type='admin'";
     $result=mysqli_query($conn,$sql);
 
 ?>
@@ -48,20 +50,25 @@
 <html>
   <head>
       <style>
-        h6{
+        h1{
+          color: black;
+          font-weight: bold;
+          font-style: italic;
+        }
+        h4{
           color: red;
           font-weight: bold;
           font-style: italic;
         }
         table, th, td {
-             border: 1px solid black;
+             border: 1px solid white;
         }
         th{
-          color:blue;
+          color:red;
           font-weight: bold;
         }
         td{
-          color:black;
+          color:white;
           font-style:italic;
           font-weight: bold;
         }
@@ -71,7 +78,9 @@
           border-collapse: collapse;
         }
         body{
-          
+          background-image: url('wat.jpg');
+          background-size: cover;
+          height: 100%;
         }
       </style>
       <link rel="stylesheet" href="project.css">
@@ -80,8 +89,8 @@
     <body>
 
     <form action="Deleteadmin.php">
-
-            <table>
+        <h1>Delete Admin</h1>
+            <table class="table table-dark table-sm">
         <tr>
           <th>Id</th>
           <th>First_Name</th>
@@ -113,7 +122,6 @@
             </tr>
                <?php
               }   
-            
             ?>
           </table>  
           <br>
