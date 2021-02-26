@@ -2,21 +2,15 @@
   <body>
   <h3>My Orders</h3>
   <?php
-<<<<<<< Updated upstream
-=======
   session_start();
   require_once("connectionproject.php");
->>>>>>> Stashed changes
   $userID=$_SESSION['id'];
 
    $type=$_SESSION['t'];
   if(isset($_GET['id'])){ 
     $id=$_GET['id'];
     $sql = "SELECT * FROM cart_groups WHERE cart_id ='$id'";
-<<<<<<< Updated upstream
-=======
   }
->>>>>>> Stashed changes
     $result = mysqli_query($conn, $sql);
     $i = 0;
     while($row = mysqli_fetch_array($result)) {
@@ -39,7 +33,4 @@
  $sql2 = "DELETE FROM cart_groups WHERE cart_id = '$id'";
 
   }
-<<<<<<< Updated upstream
 }
-=======
->>>>>>> Stashed changes
