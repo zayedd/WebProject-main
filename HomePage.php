@@ -5,29 +5,78 @@ if(!isset($_SESSION))
 }
 
 require_once("navbar.php");
+include("connectionproject.php");
 ?>
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
+<html lang="en"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="project.css">
-    <title>HomePage</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
   </head>
-  <body>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    
-<html>
-<body>
+  <body class="text-center">
+<style>
 
+body {
+  background-image: url('https://static.onecms.io/wp-content/uploads/sites/34/2020/08/04/woman-hiking-mountain-getty-0720.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
 
-</body>
-</html>
-  </body>
-</html>
+form-group{
+  padding: 2px;
+}
+input[type="text"]{
+  margin-top:75%;
+  margin-left:95%;
+}
+input[type="submit"]{
+  margin-top:-65px;
+  margin-left:900px;
+}
+
+</style>
+
+<div class="row">
+            <div class="form-group col-lg-4 ">
+               <form method="POST">
+                <input type="text" name="name" class="form-control input-normal" placeholder="Search by Country, City or Place" />
+                <input type="submit" class="btn btn-dark" name="search" value="Search">
+                </form>
+            </div>
+        </div>
+  
+   
+    <?php
+  $o=" ";
+    if(isset($_POST['search']))
+{
+	$o=$_POST['name'];
+ 
+	$sql = "SELECT * FROM groups WHERE place = '$o' or country = '$o' or city = '$o'";
+    // $_SESSION['place']=$_POST['name'];
+    // $_SESSION['country']=$_POST['name'];
+    // $_SESSION['city']=$_POST['name'];
+	$result = mysqli_query($conn, $sql);
+ 
+  
+
+}
+echo "<a href='searchgroups.php?idd={$o}' class='btn btn-primary'>Search</a>";
+
+?>
+
+</body></html>

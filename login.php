@@ -77,7 +77,7 @@ session_destroy();
 							{
 								//echo '<script>alert(" Welcome User!")</script>';
 								//echo '<script>window.location="signup.php"</script>';
-								header('Location: HomePage.php');
+								header('Location: groups.php');
 
 							
 							}
@@ -86,6 +86,10 @@ session_destroy();
 								header('Location: HomePage.php');
 							}
 							else if($t=="auditor")
+							{ 
+								header('Location: HomePage.php');
+							}
+							else if($t=="hr")
 							{ 
 								header('Location: HomePage.php');
 							}
