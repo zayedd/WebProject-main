@@ -49,7 +49,7 @@ session_destroy();
     $dbServername="localhost";
 	$dbUsername="root";
 	$dbpassword="";
-	$db = "wproject";
+	$db = "webproject (2)";
 
 	
    		if(isset($_POST['signin']) && !empty($_POST['email']) && !empty($_POST['pass']) )

@@ -33,7 +33,7 @@ while($row = mysqli_fetch_array($result))
       $u1 = $row2['First_Name'];
       $u2 = $row22['First_Name'];
       $ut = "Chat between : " .  $u2 . " and " . $u1;
-      echo "<a href='chat1.php?idd={$row['id']}' class='btn btn-primary'>{$ut}</a>";
+      echo "<a href='auditorchat.php?idd={$row['id']}' class='btn btn-primary'>{$ut}</a>";
       echo "<br>";      echo "<br>";
 
     }

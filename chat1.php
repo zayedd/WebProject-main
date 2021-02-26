@@ -26,13 +26,14 @@ include("connectionproject.php");
     $sql = "SELECT * FROM data WHERE id='$id'";
     $result = mysqli_query($conn,$sql);
     $row= mysqli_fetch_array($result);
-    // echo "Message ".$row['First_Name'].".";
+     echo "Message ".$row['First_Name'].".";
     // $sql1 = "SELECT * FROM  WHERE admin_id = $id";
     // $result1 = mysqli_query($conn,$sql1);
     // $row1= mysqli_fetch_array($result1);
      $sql3 ="SELECT * FROM data WHERE id='$senderID'";
      $result3= mysqli_query($conn,$sql3);
      $row3= mysqli_fetch_array($result3);
+     $chat_id=0;
     //  $sql11 = "SELECT * FROM `messages` WHERE sender_id = $senderID or reciever_id = $senderID or sender_id = $id or reciever_id = $id";
     // $result4 = mysqli_query($conn, $sql11);
     // while($row4 = mysqli_fetch_array($result4)){
@@ -81,8 +82,15 @@ include("connectionproject.php");
     $querycheck="SELECT * FROM chats WHERE admin_id = '$id' or user_id = '$senderID' AND admin_id = '$senderID' or user_id = '$id'";
     
     $resultcheck = mysqli_query($conn,$querycheck);
+  
     if(mysqli_num_rows($resultcheck)==0)
          {
+          $sql0= "SELECT * FROM messages WHERE chat_id = '$chat_id'";
+          echo $sql0;
+          echo "<br>";
+          $result0 = mysqli_query($conn,$sql0);
+          $row0= mysqli_fetch_array($result0);
+          
           $sql7="INSERT INTO chats (user_id,admin_id) VALUES ('$senderID','$id')";
           // echo $sql7;
           $result7 = mysqli_query($conn,$sql7);
@@ -99,6 +107,10 @@ include("connectionproject.php");
          }
          else{
           // echo"else";
+           $sql0= "SELECT * FROM messages WHERE chat_id = '$chat_id'";
+           $result0 = mysqli_query($conn,$sql0);
+           $row0= mysqli_fetch_array($result0);
+   
           $querycheck1="SELECT * FROM chats WHERE admin_id = '$id' or user_id = '$senderID' AND admin_id = '$senderID' or user_id = '$id'";
           $resultcheck1 = mysqli_query($conn,$querycheck1);
           $rowcheck1= mysqli_fetch_array($resultcheck1);
@@ -115,15 +127,13 @@ include("connectionproject.php");
    
     
    // header("refresh:1");
-   $sql0= "SELECT * FROM messages WHERE chat_id = '$chat_id'";
-   $result0 = mysqli_query($conn,$sql0);
-   $row0= mysqli_fetch_array($result0);
-   
+  
    
    if($type=="admin")
    {
-    // echo"aywa ana admin";
+     
      $sqln = "SELECT * FROM data WHERE id='$adminID'";
+     
      $sqln3 = "SELECT * FROM data WHERE id='$userID'";
      $sqln2 = "SELECT * FROM messages WHERE sender_id=$adminID or sender_id = $userID ";
 
@@ -138,6 +148,7 @@ include("connectionproject.php");
      {
       if($rown2['sender_id'] == $adminID){echo $adminname . ": ". $rown2['message'] . "&#13;&#10;";}
       else if($rown2['sender_id'] == $userID){echo $username . ": ". $rown2['message'] . "&#13;&#10;";}
+      
      }
 
 
@@ -148,7 +159,8 @@ include("connectionproject.php");
      $sqln = "SELECT * FROM data WHERE id='$adminID'";
      $sqln3 = "SELECT * FROM data WHERE id='$userID'";
      $sqln2 = "SELECT * FROM messages WHERE sender_id=$adminID or sender_id = $userID ";
-
+     echo $sqln2; 
+     
      $resultn3 = mysqli_query($conn , $sqln3);
      $resultn2 = mysqli_query($conn,$sqln2);
      $resultn = mysqli_query($conn,$sqln);
@@ -158,6 +170,7 @@ include("connectionproject.php");
      $username = $rown3['First_Name'];
      while($rown2 = mysqli_fetch_array($resultn2)) 
      {
+       
       if($rown2['sender_id'] == $adminID){echo $adminname . ": ". $rown2['message'] . "&#13;&#10;";}
       else if($rown2['sender_id'] == $userID){echo $username . ": ". $rown2['message'] . "&#13;&#10;";}
      }
