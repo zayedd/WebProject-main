@@ -10,9 +10,12 @@ require_once("navbar.php");
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    
+    <style>
+    tbody{
+      font-size: large;
+    }
+    </style>
   </head>
 <body>
 <?php
@@ -91,9 +94,5 @@ while($row = mysqli_fetch_array($result2))
       <button  type="submit" name="confirm" class="btn btn-primary">Confirm Transaction</button>
       </form>
          <?php
-         if(isset($_POST["confirm"]))
-         {
-           echo"";
-         }
-          ?>
+                   ?>
 </body>

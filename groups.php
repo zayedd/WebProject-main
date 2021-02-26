@@ -13,6 +13,35 @@ require_once("navbar.php");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <style>
+    * {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
       .rating {
         display:flex;
       }
@@ -31,6 +60,7 @@ require_once("navbar.php");
     </style>
   </head>
 <body>
+<table>
 <?php
 include("connectionproject.php");
 $t=$_SESSION['t'];
@@ -45,6 +75,8 @@ if(mysqli_num_rows($result)>0)
 {
 while($row = mysqli_fetch_array($result)) {
   
+  echo "<tr>";
+  echo "<td>";
    echo" <div class='card' style='width: 18rem;'>";
     echo " <img class='card-img-top' src='".$row['photo']."' alt='Card image cap'>";
   echo"<div class='card-body'>";
@@ -57,13 +89,16 @@ while($row = mysqli_fetch_array($result)) {
    {
     echo "<a href='http://localhost/WebProject-main/editgroups.php?id={$row['id']}' class='btn btn-secondary'>Edit</a>";
     echo "<a href='http://localhost/WebProject-main/deletegroups.php?id={$row['id']}' class='btn btn-danger'>Delete</a>";
-
+    echo "<td>";
+     echo "</tr>";
    }
   echo "</div>";
  echo"</div>";   
 }
 }
 ?>
+  </table>
+
 <script>
 
 function createRatingStars(element){
