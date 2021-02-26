@@ -39,11 +39,13 @@ session_destroy();
 		        Looks good!
 		      </div>
 		    </div>
-		  	<button class="btn btn-primary" type="submit" name="signin">SignIn</button>
+		  	<button class="btn btn-primary" type="submit" name="signin">Login</button>
 		  	<br>
 		  	
     </form>
+	<!-- <a href="signup.php" class="btn btn-primary" name="signup">Registration</button> -->
 </div>
+<a href="signup.php" class="btn btn-success" name="signup">Registration</button>
        <?php
        session_start();
     $dbServername="localhost";
@@ -77,7 +79,7 @@ session_destroy();
 							{
 								//echo '<script>alert(" Welcome User!")</script>';
 								//echo '<script>window.location="signup.php"</script>';
-								header('Location: groups.php');
+								header('Location: HomePage.php');
 
 							
 							}

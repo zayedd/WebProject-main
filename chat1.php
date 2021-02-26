@@ -86,16 +86,16 @@ include("connectionproject.php");
     if(mysqli_num_rows($resultcheck)==0)
          {
           $sql0= "SELECT * FROM messages WHERE chat_id = '$chat_id'";
-          echo $sql0;
+        
           echo "<br>";
           $result0 = mysqli_query($conn,$sql0);
           $row0= mysqli_fetch_array($result0);
           
           $sql7="INSERT INTO chats (user_id,admin_id) VALUES ('$senderID','$id')";
-          // echo $sql7;
+          
           $result7 = mysqli_query($conn,$sql7);
           $querycheck1="SELECT * FROM chats WHERE admin_id = '$id' or user_id = '$senderID' AND admin_id = '$senderID' or user_id = '$id'";
-          // echo $querycheck;
+          
           $resultcheck1 = mysqli_query($conn,$querycheck1);
           $rowcheck1= mysqli_fetch_array($resultcheck1);
           $chat_id= $rowcheck1['id'];
@@ -103,10 +103,10 @@ include("connectionproject.php");
           $userID=$row0['user_id'];
           $sql1 ="INSERT INTO messages (sender_id,reciever_id,message,chat_id) VALUES('$senderID','$recieverID','$msg','$chat_id')";
           $result1 = mysqli_query($conn,$sql1);
-          //echo $sql7;
+          
          }
          else{
-          // echo"else";
+          
            $sql0= "SELECT * FROM messages WHERE chat_id = '$chat_id'";
            $result0 = mysqli_query($conn,$sql0);
            $row0= mysqli_fetch_array($result0);
@@ -159,7 +159,7 @@ include("connectionproject.php");
      $sqln = "SELECT * FROM data WHERE id='$adminID'";
      $sqln3 = "SELECT * FROM data WHERE id='$userID'";
      $sqln2 = "SELECT * FROM messages WHERE sender_id=$adminID or sender_id = $userID ";
-     echo $sqln2; 
+     
      
      $resultn3 = mysqli_query($conn , $sqln3);
      $resultn2 = mysqli_query($conn,$sqln2);

@@ -115,16 +115,16 @@ $resultemail = mysqli_query( $conn,$repeat );
 			}
 
 			if(empty($errors) == true){
-				$destination=move_uploaded_file($file_tmp, "C:/xampp/htdocs/New folder/photos/". $file_name);	
+				$destination=move_uploaded_file($file_tmp, "C:/xampp/htdocs/WebProject-main/photos/". $file_name);	
 				move_uploaded_file($file_tmp, $destination);
 				
 				//echo "success";
 			}
 
-			if($imageFileType === "jpeg"){
+			// if($imageFileType === "jpeg"){
 
-				echo "file is a jpeg :)";
-			}
+			// 	echo "file is a jpeg :)";
+			// }
 
 			//mysqli_query($conn,$sql);
 
@@ -141,7 +141,7 @@ $resultemail = mysqli_query( $conn,$repeat );
 		//echo '<script>window.location="HomePage.php"</script>';
 		//$repeat2="SELECT * FROM data WHERE id=22";
 		//$resultemail2 = mysqli_query( $conn,$repeat2 );
-		echo $f;
+		// echo $f;
 	}
 	
 
@@ -190,7 +190,7 @@ $resultemail = mysqli_query( $conn,$repeat );
 		    	   <input type="file" name="photo">
              </div>		
 		  	<br>
-		  	<button class="btn btn-primary" type="submit" name="signup" href="http://localhost/New%20folder/egypt.php">SignUp</button>
+		  	<button class="btn btn-primary" type="submit" name="signup" href="http://localhost/homepage.php">SignUp</button>
 		    </form>
  		</div> 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -168,9 +168,7 @@ else     if($_SESSION['t'] == 'admin')
 		  width: 100%;
 		  height: auto;
 		}
-		a:hover{
-			background-color:blue;
-		}
+		
 
     </style>
   </head>
