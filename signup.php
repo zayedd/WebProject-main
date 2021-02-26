@@ -150,7 +150,7 @@ $resultemail = mysqli_query( $conn,$repeat );
 ?>
   		<h1 style="font-style: italic;color: blue; text-align: center;">Please SignUp</h1> 
 		<div class="row justify-content-center" style="padding-top:10px;">
-			<form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
+			<form role="form" method="POST" action="login.php" enctype="multipart/form-data">
 <div class="col-md-6 mb-3">
 		      <input type="text" placeholder="FirstName" name="first" required>
 		      <div class="valid-tooltip">
@@ -190,7 +190,7 @@ $resultemail = mysqli_query( $conn,$repeat );
 		    	   <input type="file" name="photo">
              </div>		
 		  	<br>
-		  	<button class="btn btn-primary" type="submit" name="signup" href="http://localhost/homepage.php">SignUp</button>
+		  	<button class="btn btn-primary" type="submit" name="signup">SignUp</button>
 		    </form>
  		</div> 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
