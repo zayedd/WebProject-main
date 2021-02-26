@@ -54,7 +54,7 @@ input[type="submit"]{
 <div class="row">
             <div class="form-group col-lg-4 ">
                <form method="POST">
-                <input type="text" name="name" class="form-control input-normal" placeholder="Search by Country, City or Place" />
+                <input type="text" name="input" class="form-control input-normal" placeholder="Search by Country, City or Place" />
                 <input type="submit" class="btn btn-dark" name="search" value="Search">
                 </form>
             </div>
@@ -62,21 +62,25 @@ input[type="submit"]{
   
    
     <?php
-  $o=" ";
-    if(isset($_POST['search']))
-{
-	$o=$_POST['name'];
+  
+  if(isset($_POST['input']))
+  {
+	$o=$_POST['input'];
  
 	$sql = "SELECT * FROM groups WHERE place = '$o' or country = '$o' or city = '$o'";
     // $_SESSION['place']=$_POST['name'];
     // $_SESSION['country']=$_POST['name'];
     // $_SESSION['city']=$_POST['name'];
 	$result = mysqli_query($conn, $sql);
- 
-  
+  printf("<script>window.location.replace('searchgroups.php?idd={$o}')</script>");
 
+  
+ 
 }
-echo "<a href='searchgroups.php?idd={$o}' class='btn btn-primary'>Search</a>";
+
+
+
+
 
 ?>
 
