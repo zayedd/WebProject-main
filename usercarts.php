@@ -93,6 +93,9 @@ while($row = mysqli_fetch_array($result2))
       <form method="post" action="orders.php?id=<?php echo $cartid;?>"> 
       <button  type="submit" name="confirm" class="btn btn-primary">Confirm Transaction</button>
       </form>
+      <a href="orders.php?id=<?php echo $cartid?>" 
+      class="btn btn-primary" value="View Orders">View Transaction History</a> 
          <?php
+         
                    ?>
 </body>

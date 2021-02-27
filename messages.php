@@ -20,6 +20,7 @@ include("connectionproject.php");
   $type=$_SESSION['t'];
 if($type=="user")
  {
+   echo"<h3>Select one of these admins to chat with: </h3>";
     $sql = "SELECT * FROM data WHERE type='admin'";
     $result = mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0)
@@ -32,6 +33,7 @@ while($row = mysqli_fetch_array($result)) {
  }
  elseif($type="admin")
  {
+    echo"<h3>You Have message from: </h3>";
    $sids = array( );
    $aid = $_SESSION['id'];
     $sql = "SELECT * FROM messages WHERE reciever_id = $aid";
@@ -59,6 +61,7 @@ while($row = mysqli_fetch_array($result)) {
 
       }
    }
+   
      $usids = array_unique($sids);
      sort($usids);
     for($x = 0; $x <count($usids); $x++) {

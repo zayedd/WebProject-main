@@ -56,9 +56,9 @@
 		    <li class="nav-item">
 		    	<a class="nav-link" href="messages.php">View Messages</a>
 		    </li>
-		   	<li class="nav-item">
+		   	<!-- <li class="nav-item">
 		    	<a class="nav-link" href="SearchOrder.php">Search For Order</a>
-			</li>
+			</li> -->
 			</li>
 		   	<li class="nav-item">
 				<a class="nav-link" href="login.php">LogOut</a>

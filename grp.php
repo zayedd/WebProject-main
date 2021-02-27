@@ -15,6 +15,17 @@ require_once("navbar.php");
     
   </head>
     <body>
+    <style>
+    .card {
+        margin-left:470px;
+        text-align:center;
+        width: 700px;
+        margin-top: 50px;
+      }
+      body {
+ background-image: url("https://wallpaperaccess.com/full/3051421.jpg");
+      }
+    </style>
         <?php
         include("connectionproject.php");
         if(isset($_GET['id'])){
@@ -47,7 +58,7 @@ require_once("navbar.php");
           $query4 = "INSERT INTO cart_groups (cart_id , group_id) VALUES ($cartid , $id)";
           $result = mysqli_query($conn,$query4);
 
-          echo $query4;
+         // echo $query4;
 
          }
         }
@@ -57,20 +68,37 @@ require_once("navbar.php");
 
 
 
-<div class="card mb-3">
+
  
  <form  method="POST" ?>
-  <img class="card-img-top" src='<?php echo"{$row['photo']}" ?>' alt="place photo" width="20" height="300">
+  <!-- <img class="card-img-top" src='' alt="place photo" width="20" height="300">
   <div class="card-body">
-    <h5 name="place" class="card-title"><?php echo"{$row['place']}" ?></h5>
-    <h7 class="card-text">Date & time: <?php echo"{$row['datetime']}" ?></h7>
+    <h5 name="place" class="card-title"></h5>
+    <h7 class="card-text">Date & time: </h7>
     <br>
-    <h7 class="card-text"> Price: <?php echo"{$row['price']}" ?></h7>
-    <br>
+    <h7 class="card-text"> Price: ?></h7>
+    <br> -->
     
-    <input type="hidden" name="hidden_id" value="<?php echo"{$row['id']}" ?>">
+
+    <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src='<?php echo"{$row['photo']}"?>' alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><?php echo"{$row['place']}"?></h5>
+    <h7 class="card-text">Date & time: <?php echo"{$row['datetime']}" ?></h7>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Price: <?php echo"{$row['price']}" ?></li>
+  </ul>
+  <div class="card-body">
+  <input type="submit" class="btn btn-dark" name="submit" value="Add To Cart">
+
+    
+  </div>
+</div>
+    <!-- <input type="hidden" name="hidden_id" value="<?php echo"{$row['id']}" ?>">
     <input type="hidden" name="hidden_name" value="<?php echo"{$row['place']}" ?>">
-    <input type="submit" class="btn btn-dark" name="submit" value="Add To Cart">
+    <input type="submit" class="btn btn-dark" name="submit" value="Add To Cart"> -->
+
   </div>
   </form>
 </div>

@@ -56,45 +56,16 @@ border-radius: 10px;
     echo"<div class='messageperson'>";
      echo "<h3>Message ".$row['First_Name'].".</h3>";
      echo"</div>";
-    // $sql1 = "SELECT * FROM  WHERE admin_id = $id";
-    // $result1 = mysqli_query($conn,$sql1);
-    // $row1= mysqli_fetch_array($result1);
+    
      $sql3 ="SELECT * FROM data WHERE id='$senderID'";
      $result3= mysqli_query($conn,$sql3);
      $row3= mysqli_fetch_array($result3);
      $chat_id=0;
-    //  $sql11 = "SELECT * FROM `messages` WHERE sender_id = $senderID or reciever_id = $senderID or sender_id = $id or reciever_id = $id";
-    // $result4 = mysqli_query($conn, $sql11);
-    // while($row4 = mysqli_fetch_array($result4)){
-    //   // echo $row4['message'] ." <br>";
-    //   $sql5 = "SELECT sender_id FROM messages where sender_id= $senderID or sender_id=$id";
-    //   $result5 = mysqli_query($conn, $sql5);
-    //   while($row5 = mysqli_fetch_array($result5))
-    //   {
-    //     $sid = $row5['sender_id'];
-    //     $sql6 = "SELECT * FROM data WHERE id=$sid";
-    //     $result6 = mysqli_query($conn,$sql6);
-    //     while($row6 = mysqli_fetch_array($result6))
-    //     {        echo $row6['First_Name'] . " : " . $row4['message'];
-        
-    //     }
-
-    //   }
-
-
-    // }
-
     
-
-
-
-    //  $sql5 = "SELECT First_Name FROM data INNER JOIN messages ON data.id = messages.sender_id"
   }
  ?>
  <br>
-  <!-- <textarea type="text" name="chatbox" readonly>
-  </textarea> -->
-  
+ 
  
    <textarea rows="10" columns ="50" readonly>
    
@@ -206,11 +177,7 @@ border-radius: 10px;
      }
 
 
-  //   echo $rown['First_Name'].": ";
-  //  while($row0 = mysqli_fetch_array($result0)) {
-    
-  //   echo $row0['message'];
-  //   echo"&#13;&#10;";
+  
    }
    if($type=="auditor")
    {
@@ -233,11 +200,7 @@ border-radius: 10px;
      }
 
 
-  //   echo $rown['First_Name'].": ";
-  //  while($row0 = mysqli_fetch_array($result0)) {
-    
-  //   echo $row0['message'];
-  //   echo"&#13;&#10;";
+  
    }
         
        
@@ -247,7 +210,7 @@ border-radius: 10px;
  
  
  
-//   echo $sql1;
+
 
   ?>
   

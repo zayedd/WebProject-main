@@ -16,7 +16,7 @@ session_destroy();
      
       background-size: cover;
       height: 100%;
-	  background-image: url('mm.jpg');
+	  background-image: url('https://wallpaperaccess.com/full/825191.jpg');
 
     }
     </style>
@@ -25,7 +25,7 @@ session_destroy();
   <body class="text-center">
 <div style="margin-top: 150px;">
 	<form form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" novalidate style="width: 100%; max-width: 330px; padding: 40px;margin: auto;">
-		  <h1 style="margin-bottom: 10px;">Please SignIn</h1>
+		  <h1 style="margin-bottom: 10px; color: white;">Please SignIn</h1>
 		  <br>
 		    <div class="col-md-6 mb-3">
 		      <input type="text" name="email" placeholder="Email" required>

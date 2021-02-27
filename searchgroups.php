@@ -17,31 +17,49 @@ include("connectionproject.php");
     
   </head>
   <body>
+  <style>
+  .card{
+        margin-left:450px;
+        text-align:center;
+        width: 500px;
+      }
+      body{
+  background-color: #ffb266;;
+}
+  </style>
   <?php
   
    
-  if(isset($_GET['idd'])){ 
+  $t=$_SESSION['t'];
     $x=$_GET['idd'];
     $sql = "SELECT * FROM groups WHERE place = '$x' or country = '$x' or city = '$x'";
     $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_array($result))
-    {
-     echo "z";
-     echo"<div class='row row-cols-1 row-cols-md-3 g-4'>";
-     echo"<div class='col'>";
-            echo" <div class='card' style='width: 40rem;'>";
-            echo "<img class='card-img-top' src='".$row['photo']."' alt='Card image cap'>";
-            echo"<div class='card-body'>";
-            echo"<h5 class='card-title'>{$row['place']}</h5>";
-            echo"<h6 class='card-text'>{$row['country']}</h6>";
-            //echo "<div class='rating' data-rating='".$row["stars"]."'></div>";
-            echo "<a href='http://localhost/WebProject-main/grp.php?id={$row['id']}' class='btn btn-primary'>Group Details</a>";
-        // echo "<a href='./rate-group.php?id={$row['id']}' class='btn btn-primary'>Rate Group</a>";
-        echo "</div>";
-        echo"</div>";
- echo "</div>";
- echo "</div>";
+    
+    if(mysqli_num_rows($result)>0)
+{
+while($row = mysqli_fetch_array($result)) {
+  
+  echo "<tr>";
+  echo "<td>";
+   echo" <div class='card' style='width: 18rem;'>";
+    echo " <img class='card-img-top' src='".$row['photo']."' alt='Card image cap'>";
+  echo"<div class='card-body'>";
+    echo"<h5 class='card-title'>{$row['place']}</h5>";
+    echo"<h6 class='card-text'>{$row['country']}</h6>";
+  //  echo "<div class='rating' data-rating='".$row["stars"]."'></div>";
+    echo "<a href='http://localhost/WebProject-main/grp.php?id={$row['id']}' class='btn btn-primary'>Group Details</a>";
+   // echo "<a href='./rate-group.php?id={$row['id']}' class='btn btn-primary'>Rate Group</a>";
+   if($t=="admin")
+   {
+    echo "<a href='http://localhost/WebProject-main/editgroups.php?id={$row['id']}' class='btn btn-secondary'>Edit</a>";
+   
+    echo "<td>";
+     echo "</tr>";
+   }
+  echo "</div>";
+ echo"</div>";
+echo"<br>";
  
-    } 
-  }
+}
+}
   ?>

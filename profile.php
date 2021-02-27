@@ -160,7 +160,7 @@ $row = mysqli_fetch_array($result);
             <div class="col-md-8">
               <input type="submit" name="save" class="btn btn-primary" value="Save Changes">
               <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
+              <input type="reset" name="cancel" class="btn btn-default" value="Cancel">
             </div>
           </div>
         </form>
@@ -192,12 +192,16 @@ if($oldpass == $row['Password'])
   }
     
     
-
+  echo"<script>window.location.href = 'HomePage.php'</script>";
 }
 else
 {
-echo"Wrong Old Password";
+  echo"<script>alert('Wrong Old Password')</script>";
 }
+}
+if(isset($_POST["cancel"]))
+{
+  echo"<script>window.location.href = 'HomePage.php'</script>";
 }
  
 

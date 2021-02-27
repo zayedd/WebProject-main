@@ -16,43 +16,29 @@
   require_once("connectionproject.php");
   require_once("navbar.php");
   $userID=$_SESSION['id'];
- echo" <h3>My Orders</h3>";
-   $type=$_SESSION['t'];
-  if(isset($_GET['id'])){ 
-    $id=$_GET['id'];
-    $sql = "SELECT * FROM cart_groups WHERE cart_id ='$id'";
-  }
-    $result = mysqli_query($conn, $sql);
-    $i = 0;
-    while($row = mysqli_fetch_array($result)) {
-      $groupID = $row['group_id'];
-      $sql1= "SELECT * FROM groups WHERE id = '$groupID'";
-      $result1 = mysqli_query($conn, $sql1);
-      $row1 = mysqli_fetch_array($result1);
-     $sql2 = "INSERT INTO confirmed_orders (cart_id,group_id) VALUES ($id,$groupID)";
-     $result2 = mysqli_query($conn, $sql2);
-
-    }
-    $sql3 = "SELECT * FROM confirmed_orders WHERE cart_id = '$id'";
+ echo" <h3>History of made Orders</h3>";
+    $sql3 = "SELECT * FROM confirmed_orders";
     $result3 = mysqli_query($conn, $sql3);
     while($row3 = mysqli_fetch_array($result3)) {
-      $groupID = $row3['group_id'];
-
+      $groupID = $row3['group_id'];        
      $sql5 = "SELECT * FROM groups WHERE id = '$groupID'";
      $result2 = mysqli_query($conn, $sql5);
      $row1 = mysqli_fetch_array($result2);
+     $cartid = $row3['cart_id'];
+     $sql2 = "SELECT * FROM cart WHERE id=$cartid";
+     $result22 = mysqli_query($conn , $sql2);
+     $row2 = mysqli_fetch_array($result22);
      echo" <div class='card' style='width: 18rem;'>";
      echo "<img class='card-img-top' src='".$row1['photo']."' alt='Card image cap'>";
    echo"<div class='card-body'>";
      echo"<h5 class='card-title'>{$row1['place']}</h5>";
+     echo"<h5 class='card-title'>Purchased by user with ID OF : {$row2['user_id']}</h5>";
      echo"<h6 class='card-text'>{$row1['country']}</h6>";
      echo "<a href='http://localhost/WebProject-main/grp.php?id={$row1['id']}' class='btn btn-primary'>Group Details</a>";
      echo "<a href='./rate-group.php?id={$row1['id']}' class='btn btn-primary'>Rate Group</a>";
      echo "</div>";
 echo"</div>"; 
 
-$sql4 = "DELETE FROM cart_groups WHERE cart_id = '$id'";
-$result4 = mysqli_query($conn, $sql4);
 
 
  }
