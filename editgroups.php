@@ -6,7 +6,9 @@
 <html lang="en">
 <!-- Required meta tags -->
 <?php
+session_start();
 include("connectionproject.php");
+require_once("navbar.php");
 
 
 $id=$_GET['id'];
@@ -39,34 +41,23 @@ $row1= mysqli_fetch_array($result1);
   </div>
   
   <div class="form-group column-2">
-  <label for="example-datetime-local-input" class="col-2 col-form-label">Date and time</label>
+  <label for="example-datetime-local-input" class="col-2 col-form-label">Current Date and time <?php echo $row1['datetime'];?></label>
     <input class="form-control" type="datetime-local"  id="example-datetime-local-input" name="dtgroup" value="<?php echo $row1['datetime']; ?>" >
   </div>
  </div>
     Country
-    <select class="form-control" id="exampleFormControlSelect1" name="countrygr" value="<?php echo $row1['country']; ?>">
-      <?php
-      if(mysqli_num_rows($result)>0)
-      {
-      while($row = mysqli_fetch_array($result)) {
-        echo"<option> {$row['name']}</option>";
-      
-      }
-
-      }
-      ?>
+    <input type="text" class="form-control" id="exampleFormControlSelect1" name="countrygr" value="<?php echo $row1['country']; ?>">
      
-    </select>
   </div>
   <br>
   <div>
-  <form method="post">
+ 
   <div class="form-group">
     <label for="exampleFormControlInput1">City</label>
     <input type="text" class="form-control" id="city" name="city" placeholder="City" value="<?php echo $row1['city']; ?>">
   </div>
   <div>
-  <form method="post">
+ 
   <div class="form-group">
     <label for="exampleFormControlInput1">Price</label>
     <input type="number" class="form-control" id="price" name="price" placeholder="Price" value="<?php echo $row1['price']; ?>">
@@ -80,7 +71,7 @@ $row1= mysqli_fetch_array($result1);
   <br>
 </form>
   <?php
-include("connectionproject.php");
+
 
 if(isset($_POST["submitgroup"]))
 {
@@ -95,11 +86,11 @@ $conn = new mysqli($servername, $username, $password,$db);
 
 // Check connection
 
-$sql ="UPDATE groups SET  (place,datetime,country,city,price,photo) VALUES('$place','$dtgroup','$countrygr','$citygr','$pricegr','$grphoto')";
+$sql ="UPDATE groups SET  place='$place',datetime='$dtgroup',country='$countrygr', city='$citygr', photo='$grphoto' WHERE id = '$id'";
 
 
 mysqli_query($conn,$sql);
-    echo $sql;
+   
     echo"Group Submitted";
     
 

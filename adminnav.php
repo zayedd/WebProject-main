@@ -25,10 +25,7 @@
 		  width: 100%;
 		  height: auto;
 		}
-		a:hover{
-			background-color:blue;
-		}
-
+	
     </style>
   </head>
   <body>

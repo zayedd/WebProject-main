@@ -49,6 +49,7 @@ td, th {
         width:20px;
         height:20px;
         margin:0 2px;
+        margin-left:20px;
         background-image:url('layout/svg/star.svg');
         background-repeat:no-repeat;
         background-size:contain;
@@ -57,6 +58,11 @@ td, th {
       .rating .star.nostar{
         background-image:url('layout/svg/nostar.svg');
       }
+      .card{
+        margin-left:450px;
+        text-align:center;
+        width: 500px;
+      }
     </style>
   </head>
 <body>
@@ -64,7 +70,7 @@ td, th {
 <?php
 include("connectionproject.php");
 $t=$_SESSION['t'];
-echo $t;
+
 
 
 $sql = "SELECT g.*,AVG(r.stars) as stars FROM groups g LEFT JOIN rating r on g.id=r.group_id GROUP BY g.id";
