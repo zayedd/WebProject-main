@@ -260,7 +260,7 @@ if($type != 'auditor'){
   <div class="col-lg-4">
   <input type="text" class="form-control" id="message" name="message" width ="2" placeholder="Enter your message...">
   <br>
-  <input type="submit" class="btn-lg btn-primary" name="send">Send</button>
+  <input type="submit" class="btn-lg btn-primary" name="send" value="Send">
   </div>
   </div>
   </form>
