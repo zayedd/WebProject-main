@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2021 at 03:10 PM
+-- Generation Time: Feb 27, 2021 at 03:15 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.2.24
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `webproject (2)`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auditor_comments`
+--
+
+CREATE TABLE `auditor_comments` (
+  `id` int(11) NOT NULL,
+  `chat_id` int(11) NOT NULL,
+  `auditor_id` int(11) NOT NULL,
+  `comment` varchar(512) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `auditor_comments`
+--
+
+INSERT INTO `auditor_comments` (`id`, `chat_id`, `auditor_id`, `comment`) VALUES
+(5, 19, 12, 'lol'),
+(7, 18, 12, 'no');
 
 -- --------------------------------------------------------
 
@@ -43,7 +64,8 @@ INSERT INTO `cart` (`id`, `user_id`) VALUES
 (10, 3),
 (13, 7),
 (11, 8),
-(12, 8);
+(12, 8),
+(15, 13);
 
 -- --------------------------------------------------------
 
@@ -67,7 +89,9 @@ INSERT INTO `cart_groups` (`crt_id`, `cart_id`, `group_id`) VALUES
 (43, 9, 11),
 (52, 9, 18),
 (53, 9, 14),
-(55, 14, 13);
+(57, 14, 9),
+(63, 15, 16),
+(64, 14, 12);
 
 -- --------------------------------------------------------
 
@@ -86,9 +110,28 @@ CREATE TABLE `chats` (
 --
 
 INSERT INTO `chats` (`id`, `user_id`, `admin_id`) VALUES
-(1, 2, 8),
-(2, 2, 10),
-(6, 8, 7);
+(18, 1, 8),
+(19, 1, 15);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `confirmed_orders`
+--
+
+CREATE TABLE `confirmed_orders` (
+  `id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `confirmed_orders`
+--
+
+INSERT INTO `confirmed_orders` (`id`, `cart_id`, `group_id`) VALUES
+(33, 14, 9),
+(34, 14, 12);
 
 -- --------------------------------------------------------
 
@@ -152,7 +195,16 @@ INSERT INTO `data` (`id`, `First_Name`, `Last_Name`, `Email`, `Password`, `Gende
 (6, 'user6', 'u', 'user6@gmail.com', '123', 'Male', 'user', ''),
 (7, 'user7', 'u', 'user7@gmail.com', '123', 'Male', 'user', ''),
 (8, 'admin15', 'a', 'admin@admin.com', '123', 'Male', 'admin', ''),
-(10, 'admin2', 'a', 'admin2@admin.com', '123', 'Male', 'admin', '');
+(12, 'Auditor', 'Aduitor', 'a@a.com', '123', 'Male', 'auditor', ''),
+(13, 'HR', 'HR', 'hr@hr.com', '123', 'male', 'hr', ''),
+(15, 'youssef', 'zaid', 'admin33@admin.com', '123', 'Male', 'admin', ''),
+(19, 'youssef', 'zaid', 'admin55@admin.com', '123', 'Male', 'user', 'cc.jpg'),
+(20, 'youssef', 'zaid', 'yzaid33@gmail.com', '123', 'Male', 'user', 'mountain.jpg'),
+(21, 'youssef', 'zaid', 'yzaid333@gmail.com', '123', 'Male', 'user', 'cc.jpg'),
+(22, 'youssef', 'zaid', 'user10@gmail.com', '123', 'Male', 'user', ''),
+(23, 'ee', 'fwe', 'yiy@gmail.com', '123', 'Male', 'user', '35169.jpg'),
+(24, 'youssef', 'zaid', 'yheiu@gmail.com', '123', 'Male', 'user', ''),
+(25, 'youssef', 'zaid', 'yheiuu@gmail.com', '123', 'Male', 'user', '');
 
 -- --------------------------------------------------------
 
@@ -419,7 +471,7 @@ INSERT INTO `geo_countries` (`name`, `abv`, `abv3`, `abv3_alt`, `code`, `slug`) 
 --
 
 CREATE TABLE `groups` (
-  `id` int(100) NOT NULL,
+  `id` int(11) NOT NULL,
   `place` varchar(50) NOT NULL,
   `datetime` datetime(6) NOT NULL,
   `country` varchar(20) NOT NULL,
@@ -449,14 +501,14 @@ INSERT INTO `groups` (`id`, `place`, `datetime`, `country`, `city`, `price`, `ph
 (22, 'Saint Catherine', '2021-03-19 20:52:00.000000', 'Aland Islands', 'iygiy', 70, ''),
 (23, 'Saint Catherine', '0000-00-00 00:00:00.000000', 'Aland Islands', '', 50, ''),
 (24, '', '0000-00-00 00:00:00.000000', 'Afghanistan', '', 0, ''),
-(25, '', '0000-00-00 00:00:00.000000', 'Afghanistan', '', 0, ''),
-(26, '', '0000-00-00 00:00:00.000000', 'Afghanistan', '', 0, ''),
 (27, '', '0000-00-00 00:00:00.000000', 'Afghanistan', '', 0, ''),
 (28, '', '0000-00-00 00:00:00.000000', 'Afghanistan', '', 0, ''),
 (29, '', '2019-03-02 23:58:00.000000', 'Aland Islands', 'dsds', 3, ''),
 (30, '', '0000-00-00 00:00:00.000000', 'Afghanistan', '', 0, ''),
 (31, '', '0000-00-00 00:00:00.000000', 'Afghanistan', '', 0, ''),
-(32, 'Saint Catherine', '2021-02-17 21:05:00.000000', 'Albania', 'dsds', 52, '');
+(32, 'Saint Catherine', '2021-02-17 21:05:00.000000', 'Albania', 'dsds', 52, ''),
+(33, 'Dahab', '2021-02-10 02:48:00.000000', 'Egypt', 'Cairo', 50, ''),
+(34, 'Abo Galoom', '2021-02-10 03:58:00.000000', 'Greece', 'Cairo', 50, '');
 
 -- --------------------------------------------------------
 
@@ -477,112 +529,79 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `sender_id`, `reciever_id`, `message`, `chat_id`) VALUES
-(275, 2, 8, 'hi', 0),
-(276, 2, 8, 'hi', 0),
-(277, 2, 8, 'ho', 0),
-(295, 2, 8, '', 0),
-(296, 2, 8, 'rr', 0),
-(297, 2, 8, 'rr', 0),
-(298, 2, 8, 've', 0),
-(299, 2, 8, 'hi', 0),
-(300, 2, 8, 'bt', 0),
-(303, 7, 8, 'h', 0),
-(304, 7, 8, 'h', 0),
-(305, 2, 10, 'uu', 0),
-(306, 2, 10, 'uu', 0),
-(307, 2, 10, 'bt', 0),
-(308, 2, 10, 'bt', 0),
-(309, 2, 10, 'b', 0),
-(310, 2, 10, 'b', 0),
-(311, 2, 10, 'f', 0),
-(312, 2, 10, 'f', 0),
-(313, 2, 8, 'rr', 0),
-(314, 2, 8, 'd', 0),
-(315, 2, 8, 'dv', 0),
-(316, 2, 10, 'vf', 0),
-(317, 2, 10, 'vf', 0),
-(318, 2, 8, 'hh', 0),
-(319, 2, 10, 'hh', 2),
-(320, 2, 10, 'hh', 0),
-(321, 2, 10, 'd', 0),
-(322, 2, 10, 'hh', 0),
-(323, 2, 10, 'gtt', 0),
-(324, 2, 10, 'gtt', 0),
-(325, 2, 10, 'gr', 2),
-(326, 2, 10, 'gr', 0),
-(327, 2, 10, 'gr', 2),
-(328, 2, 10, 'gr', 0),
-(329, 2, 10, 'vr', 2),
-(330, 2, 10, 'vr', 0),
-(331, 2, 10, 'vr', 2),
-(332, 2, 10, 'vr', 2),
-(333, 2, 10, 'vr', 2),
-(334, 2, 10, 'gn', 2),
-(335, 2, 10, 'gn', 0),
-(336, 2, 10, 'yy', 2),
-(337, 2, 10, 'yy', 0),
-(338, 2, 10, 'y', 2),
-(339, 2, 10, 'y', 2),
-(340, 2, 10, '', 2),
-(341, 2, 10, 'fe', 2),
-(342, 2, 10, '', 2),
-(343, 2, 10, 'jjj', 2),
-(344, 2, 10, 'yy', 2),
-(345, 2, 10, 'g', 2),
-(346, 2, 10, '', 2),
-(347, 8, 2, 'd', 1),
-(348, 8, 2, 'd', 1),
-(349, 8, 2, '', 1),
-(350, 8, 2, 'f', 1),
-(351, 8, 2, 'f', 1),
-(352, 8, 2, '', 1),
-(353, 8, 7, 'j', 6),
-(354, 8, 7, 'd', 6),
-(355, 8, 7, 'y', 6),
-(356, 8, 2, 'y', 1),
-(357, 2, 8, 'hi', 1),
-(358, 2, 10, 'z', 2),
-(359, 8, 7, 'g', 6),
-(360, 8, 7, 'hh', 6),
-(361, 8, 7, 'hh', 6),
-(362, 8, 7, 'yo', 6),
-(363, 8, 7, 'z', 6),
-(364, 8, 7, 'a', 6),
-(365, 8, 7, 'a', 6),
-(366, 8, 7, 'a', 6),
-(367, 8, 7, 'a', 6),
-(368, 8, 2, 'f', 1),
-(369, 8, 7, 'd', 6),
-(370, 8, 7, 'd', 6),
-(371, 8, 7, 'e', 6),
-(372, 2, 8, 'z', 1),
-(373, 2, 10, 'd', 2),
-(374, 2, 8, 'd', 1),
-(375, 2, 8, 'f', 1),
-(376, 2, 8, 'f', 1),
-(377, 2, 8, 'f', 1),
-(378, 2, 8, 'd', 1),
-(379, 2, 8, 'f', 1),
-(380, 2, 8, 'd', 1),
-(381, 2, 8, 'f', 1),
-(382, 2, 8, 'yyy', 1),
-(383, 8, 2, 'y', 1),
-(384, 8, 7, 'd', 6),
-(385, 8, 7, 'd', 6),
-(386, 8, 7, 'gr', 6),
-(387, 8, 7, 'r', 6),
-(388, 8, 2, 'g', 1),
-(389, 8, 2, 's', 1),
-(390, 8, 2, 'd', 1),
-(391, 8, 2, 's', 1),
-(392, 8, 2, 'z', 1),
-(393, 8, 7, 'hi', 6),
-(394, 8, 7, 'z', 6),
-(395, 8, 7, 'd', 6),
-(396, 8, 7, 's', 6),
-(398, 8, 7, 'fe', 6),
-(399, 8, 7, 'gr', 6),
-(412, 8, 2, 'Admin sent this 1', 1);
+(516, 1, 8, 'hi', 18),
+(517, 1, 8, 'hi', 18),
+(518, 8, 1, 'z', 18),
+(519, 8, 1, 's', 18),
+(520, 1, 8, 'z', 18),
+(521, 1, 8, 'zzz', 18),
+(522, 1, 8, 'zzz', 18),
+(523, 1, 8, 'hi', 18),
+(524, 8, 1, 'hi', 18),
+(525, 1, 8, 'hi', 18),
+(526, 8, 1, 'hi', 18),
+(527, 1, 8, 'hi', 18),
+(528, 8, 1, 'hi', 18),
+(529, 8, 1, 'how are you', 18),
+(530, 1, 8, 'hi', 18),
+(531, 8, 1, 'hi', 18),
+(532, 1, 8, 'x', 18),
+(533, 8, 1, 'hi', 18),
+(534, 8, 1, 'eh yasaa', 18),
+(535, 1, 8, 'hi', 18),
+(536, 1, 8, 'hi', 18),
+(537, 1, 8, 'hi', 18),
+(538, 1, 8, 'hi im user 1', 18),
+(539, 1, 8, 'hi', 18),
+(540, 1, 8, 'hi', 18),
+(541, 1, 8, 'gr', 18),
+(542, 1, 8, 'fe', 18),
+(543, 1, 15, 'eh yastaa', 19),
+(544, 1, 15, 'eh yastaa', 19),
+(545, 1, 15, 'fe', 19),
+(546, 8, 1, 'hi', 18),
+(547, 8, 1, 'hi', 18),
+(548, 8, 1, 'hi', 18),
+(549, 8, 1, 'hi', 18),
+(550, 8, 1, 'hi', 18),
+(551, 8, 1, 'hi', 18),
+(552, 8, 1, 'hi', 18),
+(553, 8, 1, 'hi', 18),
+(554, 8, 1, 'hi', 18),
+(555, 8, 1, 'hi', 18),
+(556, 8, 1, 'hi', 18),
+(557, 8, 1, 'hi', 18),
+(558, 8, 1, 'hi', 18),
+(559, 8, 1, 'hi', 18),
+(560, 8, 1, 'hi', 18),
+(561, 8, 1, 'hi', 18),
+(562, 8, 1, 'hi', 18),
+(563, 8, 1, 'hi', 18),
+(564, 8, 1, 'hi', 18),
+(565, 8, 1, 'hi', 18),
+(566, 8, 1, 'ss', 18),
+(567, 1, 8, 'hi', 18),
+(568, 1, 8, 'hi', 18);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penalties`
+--
+
+CREATE TABLE `penalties` (
+  `id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `hr_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penalties`
+--
+
+INSERT INTO `penalties` (`id`, `admin_id`, `hr_id`) VALUES
+(1, 15, 13),
+(2, 15, 13);
 
 -- --------------------------------------------------------
 
@@ -621,6 +640,38 @@ CREATE TABLE `profileimages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `id` int(11) NOT NULL,
+  `stars` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`id`, `stars`, `user_id`, `group_id`) VALUES
+(1, 1, 1, 9),
+(2, 2, 1, 9),
+(6, 5, 1, 9),
+(12, 3, 1, 9),
+(13, 5, 1, 9),
+(14, 5, 1, 9),
+(15, 5, 1, 9),
+(16, 5, 1, 9),
+(17, 5, 1, 9),
+(18, 3, 8, 9),
+(19, 4, 1, 9),
+(20, 4, 1, 12),
+(21, 4, 1, 9);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_product`
 --
 
@@ -645,6 +696,14 @@ INSERT INTO `tbl_product` (`id`, `name`, `image`, `price`) VALUES
 --
 
 --
+-- Indexes for table `auditor_comments`
+--
+ALTER TABLE `auditor_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index` (`chat_id`),
+  ADD KEY `index1` (`auditor_id`);
+
+--
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
@@ -655,7 +714,8 @@ ALTER TABLE `cart`
 -- Indexes for table `cart_groups`
 --
 ALTER TABLE `cart_groups`
-  ADD PRIMARY KEY (`crt_id`);
+  ADD PRIMARY KEY (`crt_id`),
+  ADD KEY `group` (`group_id`);
 
 --
 -- Indexes for table `chats`
@@ -664,6 +724,14 @@ ALTER TABLE `chats`
   ADD PRIMARY KEY (`id`),
   ADD KEY `chat` (`admin_id`),
   ADD KEY `chat1` (`user_id`);
+
+--
+-- Indexes for table `confirmed_orders`
+--
+ALTER TABLE `confirmed_orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order` (`cart_id`),
+  ADD KEY `order1` (`group_id`);
 
 --
 -- Indexes for table `countries`
@@ -706,6 +774,14 @@ ALTER TABLE `messages`
   ADD KEY `user` (`sender_id`);
 
 --
+-- Indexes for table `penalties`
+--
+ALTER TABLE `penalties`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pen` (`admin_id`),
+  ADD KEY `pen1` (`hr_id`);
+
+--
 -- Indexes for table `places`
 --
 ALTER TABLE `places`
@@ -720,6 +796,14 @@ ALTER TABLE `profileimages`
   ADD KEY `ImageUserId` (`ImageUserId`);
 
 --
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `group_id` (`group_id`);
+
+--
 -- Indexes for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
@@ -730,22 +814,34 @@ ALTER TABLE `tbl_product`
 --
 
 --
+-- AUTO_INCREMENT for table `auditor_comments`
+--
+ALTER TABLE `auditor_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `cart_groups`
 --
 ALTER TABLE `cart_groups`
-  MODIFY `crt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `crt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `confirmed_orders`
+--
+ALTER TABLE `confirmed_orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -763,19 +859,25 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=413;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=569;
+
+--
+-- AUTO_INCREMENT for table `penalties`
+--
+ALTER TABLE `penalties`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `places`
@@ -790,6 +892,12 @@ ALTER TABLE `profileimages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
@@ -800,10 +908,23 @@ ALTER TABLE `tbl_product`
 --
 
 --
+-- Constraints for table `auditor_comments`
+--
+ALTER TABLE `auditor_comments`
+  ADD CONSTRAINT `index` FOREIGN KEY (`chat_id`) REFERENCES `chats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `index1` FOREIGN KEY (`auditor_id`) REFERENCES `data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `cart`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `hh` FOREIGN KEY (`user_id`) REFERENCES `data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cart_groups`
+--
+ALTER TABLE `cart_groups`
+  ADD CONSTRAINT `group` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `chats`
@@ -813,11 +934,24 @@ ALTER TABLE `chats`
   ADD CONSTRAINT `chat1` FOREIGN KEY (`user_id`) REFERENCES `data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `confirmed_orders`
+--
+ALTER TABLE `confirmed_orders`
+  ADD CONSTRAINT `order1` FOREIGN KEY (`group_id`) REFERENCES `cart_groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `messages`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `admin` FOREIGN KEY (`reciever_id`) REFERENCES `data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user` FOREIGN KEY (`sender_id`) REFERENCES `data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `penalties`
+--
+ALTER TABLE `penalties`
+  ADD CONSTRAINT `pen` FOREIGN KEY (`admin_id`) REFERENCES `data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pen1` FOREIGN KEY (`hr_id`) REFERENCES `data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `places`
@@ -830,6 +964,13 @@ ALTER TABLE `places`
 --
 ALTER TABLE `profileimages`
   ADD CONSTRAINT `profileimages_ibfk_1` FOREIGN KEY (`ImageUserId`) REFERENCES `data` (`id`);
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `data` (`id`),
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
