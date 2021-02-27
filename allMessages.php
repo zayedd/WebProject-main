@@ -18,6 +18,7 @@ include("connectionproject.php");
   </head>
   <?php
   $type=$_SESSION['t'];
+  
   if($type=="auditor")
   {
 $query = "SELECT * FROM chats";
