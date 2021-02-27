@@ -17,14 +17,47 @@ include("connectionproject.php");
     
   </head>
   <body>
+  <style>
+  textarea {
+    width: 410px;
+    height: 150px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  
+  .col-lg-4{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+  .btn-danger{
+    margin-top: 20px;
+margin-left: 100px;
+border-radius: 10px;
+  }
+  .messageperson 
+  {
+    text-align: center;
+  }
+  </style>
+    <div class='messageperson'>
+
+ <?php  echo " <h3>Chat between : ";
+  echo $_SESSION['user1'];
+   echo " and ";
+    echo $_SESSION['admin1'];
+    echo"</h3>"
+    ?>
+    </div>
   <textarea rows="10" columns ="15" readonly>
   <?php
   
    $type=$_SESSION['t'];
-   if(isset($_POST['submit']))
-   {
-       echo "insert comment";
-   }
+   $ID=$_SESSION['id'];
    if(isset($_GET['idd'])){ 
     $id=$_GET['idd'];
     $query = "SELECT * FROM chats WHERE id = $id";
@@ -43,6 +76,7 @@ include("connectionproject.php");
     $rown3= mysqli_fetch_array($resultn3);
     $adminname = $rown['First_Name'];
     $username = $rown3['First_Name'];
+  
     while($rown2 = mysqli_fetch_array($resultn2)) 
     {
      if($rown2['sender_id'] == $adminID){echo $adminname . ": ". $rown2['message'] . "&#13;&#10;";}
@@ -56,16 +90,22 @@ include("connectionproject.php");
 } 
     ?>
      </textarea>
-     
+     <?php
+     if($type=="auditor")
+     {
+       ?>
       <form method='POST'>
-     
+      <div class="form-group row">
+      <div class="col-lg-4">
       <input type="text" name="comment" class="form-control" placeholder="Comment on anyting...">
       
      <input type="submit" value="Comment and Send to HR" class="btn btn-danger" name="submit">
+     </div>
+  </div>
      </form>
 
      <?php
-     if(isset($_POST["submit"]))
+     if(isset($_POST["submit"]) && (!empty($_POST['comment'])))
      {
      $comment = $_POST['comment'];
      $chatID = $id;
@@ -74,7 +114,30 @@ include("connectionproject.php");
      $resultm = mysqli_query($conn,$sqlm);
      if($resultm)
      {
-         echo"comment submited";
+         echo"Comment submited";
      }
      }
+    }
+    else if ($type=="hr")
+    {
+      $sqlcom="SELECT * FROM auditor_comments WHERE chat_ID = '$id'";
+      $resultcom=mysqli_query($conn,$sqlcom);
+      $row = mysqli_fetch_array($resultcom);
+      echo"<h4> Auditor Comment: {$row['comment']} </h4>";
+     
+      ?>
+      <form method="POST">
+      <input type="submit" name="submit" class="btn btn-danger" value="Add Penalty To Admin" style="margin-left: 540px;">
+      </form>
+    <?php
+    if(isset($_POST["submit"]))
+    {
+    $sql="INSERT INTO penalties (admin_id, hr_id) VALUES ($adminID,$ID)";
+    $result= mysqli_query($conn, $sql);
+    if($result)
+    {
+      echo"Penalty added to the Admin";
+    }
+    }
+  }
       ?>

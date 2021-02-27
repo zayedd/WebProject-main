@@ -17,6 +17,33 @@ include("connectionproject.php");
     
   </head>
   <body>
+  <style>
+  textarea {
+    width: 410px;
+    height: 150px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .messageperson 
+  {
+    text-align: center;
+  }
+  
+ 
+  .col-lg-4{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+  .btn-primary{
+margin-left: 170px;
+border-radius: 10px;
+  }
+  </style>
   <?php
   
    $type=$_SESSION['t'];
@@ -26,7 +53,9 @@ include("connectionproject.php");
     $sql = "SELECT * FROM data WHERE id='$id'";
     $result = mysqli_query($conn,$sql);
     $row= mysqli_fetch_array($result);
-     echo "Message ".$row['First_Name'].".";
+    echo"<div class='messageperson'>";
+     echo "<h3>Message ".$row['First_Name'].".</h3>";
+     echo"</div>";
     // $sql1 = "SELECT * FROM  WHERE admin_id = $id";
     // $result1 = mysqli_query($conn,$sql1);
     // $row1= mysqli_fetch_array($result1);
@@ -67,9 +96,10 @@ include("connectionproject.php");
   </textarea> -->
   
  
-   <textarea rows="10" columns ="15" readonly>
+   <textarea rows="10" columns ="50" readonly>
+   
   <?php
-  
+  echo"&#13;&#10;";
   
  $sql2="SELECT * FROM messages WHERE sender_id ='$senderID'";
  $result2 = mysqli_query($conn,$sql2);
@@ -225,9 +255,14 @@ include("connectionproject.php");
 <?php 
 if($type != 'auditor'){
 ?>
-  <form method="post"> -->
-  <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...">
-  <button type="submit" class="btn btn-primary" name="send">Send</button>
+  <form method="post">
+  <div class="form-group row">
+  <div class="col-lg-4">
+  <input type="text" class="form-control" id="message" name="message" width ="2" placeholder="Enter your message...">
+  <br>
+  <input type="submit" class="btn-lg btn-primary" name="send">Send</button>
+  </div>
+  </div>
   </form>
   <?php 
   }
