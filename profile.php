@@ -184,11 +184,11 @@ if($oldpass == $row['Password'])
 {
   
   $sql1 ="UPDATE data SET First_Name = '$fn', Last_Name = '$ln' , Email = '$email', Password = '$newpass', Photo_Name = '$photo' WHERE id ='$id'";
-  
+  echo $sql1;
   $result1=mysqli_query($conn,$sql1);
   if(mysqli_affected_rows($conn) >0 )
   {
-    echo"Updated";
+    echo"<script>alert('Profile info updated')</script>";
   }
     
     

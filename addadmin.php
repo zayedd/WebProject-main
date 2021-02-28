@@ -110,7 +110,7 @@ $resultemail = mysqli_query( $conn,$repeat );
 			}
 
 			if(empty($errors) == true){
-				$destination=move_uploaded_file($file_tmp, "C:/xampp/htdocs/New folder/photos/". $file_name);	
+				$destination=move_uploaded_file($file_tmp, "C:/xampp/htdocs/Webproject-main/photos/". $file_name);	
 				move_uploaded_file($file_tmp, $destination);
 				
 				//echo "success";

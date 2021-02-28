@@ -14,11 +14,11 @@
     		margin: auto;
     	}
     	body{
-      background: url(429028.jpg) no-repeat center center fixed ;
+      /* background: url(429028.jpg) no-repeat center center fixed ; */
       background-size: cover;
       height: 100%;
 
-
+     
     }
     </style>
     <title>SignUp</title>
@@ -190,7 +190,7 @@ $resultemail = mysqli_query( $conn,$repeat );
 		    	   <input type="file" name="photo">
              </div>		
 		  	<br>
-		  	<button class="btn btn-primary" type="submit" name="signup">SignUp</button>
+		  	<input class="btn btn-primary" type="submit" name="signup" value="Confirm">
 		    </form>
  		</div> 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
