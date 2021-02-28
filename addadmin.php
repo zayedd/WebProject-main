@@ -1,5 +1,7 @@
 <?php
-	include"adminnav.php";
+session_start();
+	include"navbar.php";
+	
   ?>
 <html lang="en">
   <head>
@@ -22,7 +24,7 @@ $dbServername="localhost";
 $dbUsername="root";
 $dbpassword="";
 $db = "webproject (2)";
-session_start();
+
 $conn = mysqli_connect($dbServername,$dbUsername,$dbpassword,$db);
 
 

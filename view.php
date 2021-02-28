@@ -56,9 +56,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
  
-$sql="SELECT * FROM data WHERE
- (First_Name LIKE '%". $view . "%')
-  AND type='user'  ";
+$sql="SELECT * FROM data WHERE (First_Name LIKE '%". $view . "%' or Last_Name LIKE '%". $view . "%' or  Email LIKE '%". $view . "%' or Gender LIKE '%". $view . "%' or  id LIKE '%". $view . "%' ) AND type='user'  ";
 echo $sql;
 if($result = mysqli_query($conn,$sql))
 {

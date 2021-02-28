@@ -19,16 +19,16 @@ require_once("navbar.php");
 body{
   background-color: #ffb266;
 }
-/* Create three equal columns that floats next to each other
+Create three equal columns that floats next to each other
 .column {
   float: left;
   width: 33.33%;
   padding: 10px;
   height: 300px; /* Should be removed. Only for demonstration */
-} */
+}
 
-/* Clear floats after the columns */
-/* .row:after {
+Clear floats after the columns
+ .row:after {
   content: "";
   display: table;
   clear: both;
@@ -44,7 +44,7 @@ td, th {
   text-align: left;
   padding: 8px;
 }
-      /* .rating {
+       .rating {
         display:flex;
       }
       .rating .star{
@@ -59,12 +59,12 @@ td, th {
       }
       .rating .star.nostar{
         background-image:url('layout/svg/nostar.svg');
-      } */
+      } 
       .card{
         margin-left:450px;
         text-align:center;
         width: 500px;
-      } */
+      } 
     </style>
   </head>
 <body>
@@ -74,8 +74,8 @@ include("connectionproject.php");
 $t=$_SESSION['t'];
 
 
-//$sql = "SELECT g.*,AVG(r.stars) as stars FROM groups g LEFT JOIN rating r on g.id=r.group_id GROUP BY g.id";
-$sql="SELECT * FROM groups";
+$sql = "SELECT g.*,AVG(r.stars) as stars FROM groups g LEFT JOIN rating r on g.id=r.group_id GROUP BY g.id";
+//$sql="SELECT * FROM groups";
 $result = mysqli_query($conn,$sql);
 
 
@@ -90,9 +90,9 @@ while($row = mysqli_fetch_array($result)) {
   echo"<div class='card-body'>";
     echo"<h5 class='card-title'>{$row['place']}</h5>";
     echo"<h6 class='card-text'>{$row['country']}</h6>";
-   // echo "<div class='rating' data-rating='".$row["stars"]."'></div>";
+    echo "<div class='rating' data-rating='".$row["stars"]."'></div>";
     echo "<a href='http://localhost/WebProject-main/grp.php?id={$row['id']}' class='btn btn-primary'>Group Details</a>";
-    //echo "<a href='./rate-group.php?id={$row['id']}' class='btn btn-primary'>Rate Group</a>";
+    echo "<a href='./rate-group.php?id={$row['id']}' class='btn btn-primary'>Rate Group</a>";
    if($t=="admin")
    {
     echo "<a href='http://localhost/WebProject-main/editgroups.php?id={$row['id']}' class='btn btn-secondary'>Edit</a>";
@@ -108,7 +108,7 @@ while($row = mysqli_fetch_array($result)) {
 ?>
   <!-- </table> -->
 
-<!-- <script>
+<script>
 
 function createRatingStars(element){
 
@@ -161,6 +161,6 @@ for (let i = 0; i < ratings.length; i++) {
 const element = ratings[i];
 createRatingStars(element);
 }
-</script> -->
+</script>
 </body>
 </html>

@@ -44,9 +44,15 @@ if(isset($_POST['rating'])){
     </style>
   </head>
 <body>
+<style>
+    
+      body {
+ background-image: url("https://wallpaperaccess.com/full/3051421.jpg");
+      }
+    </style>
 <?php
 $t=$_SESSION['t'];
-echo $t;
+
 
 
 $sql = "SELECT g.*,AVG(r.stars) as stars FROM groups g LEFT JOIN rating r on g.id=r.group_id WHERE g.id='{$_GET['id']}' GROUP BY g.id";

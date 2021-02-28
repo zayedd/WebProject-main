@@ -6,6 +6,8 @@
     $password = "";
     $dbname = "webproject (2)";
     
+    include"navbar.php";
+  
     // Create connection
     
     $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -47,9 +49,7 @@
 ?>
 <!DOCTYPE html>
 <html>
-  <?php
-    include"adminnav.php";
-  ?>
+ 
   <head>
       <style>
         h1{
@@ -66,7 +66,7 @@
              border: 1px solid white;
         }
         th{
-          color:blue;
+          color:white;
           font-weight: bold;
         }
         td{
