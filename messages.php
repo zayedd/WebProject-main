@@ -37,8 +37,9 @@ while($row = mysqli_fetch_array($result)) {
    $sids = array( );
    $aid = $_SESSION['id'];
     $sql = "SELECT * FROM messages WHERE reciever_id = $aid";
+    
     $result = mysqli_query($conn,$sql);
- //  echo $sql; echo "<br>";
+
    $i =0;
 
     $result1 = mysqli_query($conn,$sql);
@@ -70,7 +71,8 @@ while($row = mysqli_fetch_array($result)) {
       while($row1 = mysqli_fetch_array($result1)){
       if($usids[$x]!=$_SESSION['id'])
       {
-         echo "<a href='chat1.php?idd={$usids[$x]}' class='btn btn-primary'>{$row1['First_Name']}</a>";
+         echo "<a href='chat1.php?idd={$usids[$x]}' class='btn btn-primary'>
+         {$row1['First_Name']}</a>";
 
       }
 

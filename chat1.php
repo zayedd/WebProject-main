@@ -80,22 +80,22 @@ border-radius: 10px;
     $msg = $_POST['message'];
     
     $recieverID = $id;
-    $querycheck="SELECT * FROM chats WHERE admin_id = '$id' or user_id = '$senderID' AND admin_id = '$senderID' or user_id = '$id'";
-    
+    $querycheck="SELECT * FROM chats WHERE admin_id = '$id' AND user_id = '$senderID'";
+    //echo $querycheck;
     $resultcheck = mysqli_query($conn,$querycheck);
   
     if(mysqli_num_rows($resultcheck)==0)
          {
           $sql0= "SELECT * FROM messages WHERE chat_id = '$chat_id'";
         
-          echo "<br>";
+          
           $result0 = mysqli_query($conn,$sql0);
           $row0= mysqli_fetch_array($result0);
           
           $sql7="INSERT INTO chats (user_id,admin_id) VALUES ('$senderID','$id')";
           
           $result7 = mysqli_query($conn,$sql7);
-          $querycheck1="SELECT * FROM chats WHERE admin_id = '$id' or user_id = '$senderID' AND admin_id = '$senderID' or user_id = '$id'";
+          $querycheck1="SELECT * FROM chats WHERE admin_id = '$id' or user_id = '$senderID'";
           
           $resultcheck1 = mysqli_query($conn,$querycheck1);
           $rowcheck1= mysqli_fetch_array($resultcheck1);
@@ -145,13 +145,15 @@ border-radius: 10px;
      $rown3= mysqli_fetch_array($resultn3);
      $adminname = $rown['First_Name'];
      $username = $rown3['First_Name'];
+     if(mysqli_num_rows($resultn2)>0){
+     
      while($rown2 = mysqli_fetch_array($resultn2)) 
      {
       if($rown2['sender_id'] == $adminID){echo $adminname . ": ". $rown2['message'] . "&#13;&#10;";}
       else if($rown2['sender_id'] == $userID){echo $username . ": ". $rown2['message'] . "&#13;&#10;";}
       
      }
-
+    }
 
  }
    if($type=="user")
@@ -169,6 +171,8 @@ border-radius: 10px;
      $rown3= mysqli_fetch_array($resultn3);
      $adminname = $rown['First_Name'];
      $username = $rown3['First_Name'];
+     if($resultn2)
+     {
      while($rown2 = mysqli_fetch_array($resultn2)) 
      {
        
@@ -176,7 +180,8 @@ border-radius: 10px;
       else if($rown2['sender_id'] == $userID){echo $username . ": ". $rown2['message'] . "&#13;&#10;";}
      }
 
-
+    }
+    
   
    }
    if($type=="auditor")
@@ -208,9 +213,6 @@ border-radius: 10px;
         
     }
  
- 
- 
-
 
   ?>
   

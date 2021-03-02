@@ -1,5 +1,6 @@
 <?php
-require_once "adminnav.php";
+session_start();
+require_once "navbar.php";
 $dbServername="localhost";
 $dbUsername="root";
 $dbpassword="";

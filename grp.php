@@ -89,10 +89,14 @@ require_once("navbar.php");
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Price: <?php echo"{$row['price']}" ?></li>
   </ul>
+  <?php if($_SESSION['t']== "user")
+  {
+    ?>
   <div class="card-body">
   <input type="submit" class="btn btn-dark" name="submit" value="Add To Cart">
-
-    
+  <?php
+  }
+    ?>
   </div>
 </div>
     <!-- <input type="hidden" name="hidden_id" value="<?php echo"{$row['id']}" ?>">

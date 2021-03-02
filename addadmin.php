@@ -126,7 +126,11 @@ $resultemail = mysqli_query( $conn,$repeat );
 
 		}	
 	
-	mysqli_query($conn,$insert);
+	if(mysqli_query($conn,$insert))
+	{
+		echo"New Admin Added";
+	}
+	
 }
 
 		//echo '<script>window.location="admin.php"</script>';
